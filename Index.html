@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patitas Felices | Veterinaria & Estética Canina</title>
+    <!-- Google Fonts: Nunito para un look amigable y redondeado -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --emerald: #2ecc71;
+            --emerald-dark: #27ae60;
+            --orange: #f39c12;
+            --orange-dark: #e67e22;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --text-dark: #2c3e50;
+            --text-muted: #7f8c8d;
+            --transition: all 0.3s ease;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --border-radius: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Componentes Reutilizables --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--orange);
+            color: white;
+            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--orange-dark);
+            transform: translateY(-3px);
+        }
+
+        .btn-whatsapp {
+            background-color: #25d366;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #128c7e;
+            transform: translateY(-3px);
+        }
+
+        section {
+            padding: 80px 10%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--emerald-dark);
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- Header & Navegación --- */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            backdrop-filter: blur(5px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--emerald-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--emerald);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--emerald-dark);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(135deg, #f0fff4 0%, #ffffff 100%);
+            padding-top: 100px;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 500px;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--emerald-dark);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            animation: fadeInRight 1s ease-out;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 550px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            box-shadow: var(--shadow);
+            border: 10px solid var(--white);
+        }
+
+        /* --- Separador de Onda --- */
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            line-height: 0;
+        }
+
+        .wave-container svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 70px;
+        }
+
+        .wave-container .shape-fill {
+            fill: #f8f9fa;
+        }
+
+        /* --- Servicios --- */
+        .services {
+            background-color: var(--light-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 0;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            overflow: hidden;
+            border-bottom: 5px solid transparent;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--emerald);
+        }
+
+        .service-img-container {
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-img-container img {
+            transform: scale(1.1);
+        }
+
+        .service-info {
+            padding: 30px;
+        }
+
+        .service-icon {
+            background-color: #e8f5e9;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-top: -60px;
+            position: relative;
+            z-index: 2;
+            border: 5px solid var(--white);
+            color: var(--emerald-dark);
+            font-size: 1.5rem;
+        }
+
+        .service-card h3 {
+            margin: 15px 0;
+            color: var(--text-dark);
+        }
+
+        /* --- Sobre Nosotros --- */
+        .about {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .about-text {
+            flex: 1.2;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--emerald-dark);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* --- Horarios --- */
+        .schedule {
+            background-color: var(--emerald);
+            color: white;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin: 50px 10%;
+            padding: 50px;
+            box-shadow: 0 15px 35px rgba(46, 204, 113, 0.3);
+        }
+
+        .schedule h2 {
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .schedule-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .schedule-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+        }
+
+        .schedule-item i {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* --- Contacto --- */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--emerald-dark);
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-item i {
+            color: var(--orange);
+            font-size: 1.2rem;
+            margin-top: 5px;
+        }
+
+        .map-container {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 300px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            padding: 60px 10% 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--orange);
+            transform: scale(1.2);
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #bdc3c7;
+        }
+
+        /* --- WhatsApp Flotante --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1001;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: #128c7e;
+        }
+
+        /* --- Animaciones --- */
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* --- Responsivo --- */
+        @media (max-width: 992px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                height: auto;
+                padding-bottom: 80px;
+            }
+            .hero-content {
+                margin-bottom: 50px;
+            }
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            section {
+                padding: 60px 5%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/573003435190" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Header -->
+    <header>
+        <a href="#" class="logo">
+            <i class="fas fa-paw"></i> Patitas Felices
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+            <li><a href="https://wa.me/573003435190" class="btn btn-whatsapp"><i class="fab fa-whatsapp"></i> WhatsApp</a></li>
+        </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="hero-content">
+            <h1>Cuidamos a tu mejor amigo <span>como se merece 🐾</span></h1>
+            <p>Especialistas en bienestar animal. Brindamos amor, salud y belleza a cada peludito que nos visita en San Gil.</p>
+            <a href="#contacto" class="btn btn-primary">Agenda tu cita</a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Perro feliz">
+        </div>
+        <!-- Onda separadora -->
+        <div class="wave-container">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="services" id="servicios">
+        <div class="section-title">
+            <h2>Nuestros Servicios</h2>
+            <p>Todo lo que tu mascota necesita para estar radiante y saludable.</p>
+        </div>
+
+        <div class="services-grid">
+            <!-- Baño y peluquería -->
+            <div class="service-card">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1516734212186-a967f81ad0d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Perro en baño">
+                </div>
+                <div class="service-info">
+                    <span class="service-icon"><i class="fas fa-bath"></i></span>
+                    <h3>Baño y Peluquería</h3>
+                    <p>Baños relajantes con shampoos especializados y cortes según la raza.</p>
+                </div>
+            </div>
+
+            <!-- Corte de uñas - IMAGEN ACTUALIZADA -->
+            <div class="service-card">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1535268647677-300dbf3d78d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Corte de uñas profesional">
+                </div>
+                <div class="service-info">
+                    <span class="service-icon"><i class="fas fa-cut"></i></span>
+                    <h3>Corte de Uñas y Estética</h3>
+                    <p>Mantenemos las patitas de tu mascota impecables y seguras.</p>
+                </div>
+            </div>
+
+            <!-- Consulta Veterinaria -->
+            <div class="service-card">
+                <div class="service-img-container">
+                    <img src="https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Veterinario">
+                </div>
+                <div class="service-info">
+                    <span class="service-icon"><i class="fas fa-stethoscope"></i></span>
+                    <h3>Consulta Veterinaria</h3>
+                    <p>Atención profesional para garantizar una vida larga y feliz.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Perro y dueño">
+        </div>
+        <div class="about-text">
+            <h2>Amor en cada detalle</h2>
+            <p>En <strong>Patitas Felices</strong>, entendemos que tu mascota es parte fundamental de tu familia. Por eso, nuestro equipo de expertos combina pasión y profesionalismo para ofrecer el mejor cuidado en San Gil.</p>
+            <p>Contamos con instalaciones modernas y seguras diseñadas para que tu peludito se sienta como en casa mientras recibe su tratamiento de belleza o chequeo médico.</p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <div style="flex: 1; min-width: 150px;"><i class="fas fa-check-circle" style="color: var(--emerald);"></i> Material Esterilizado</div>
+                <div style="flex: 1; min-width: 150px;"><i class="fas fa-check-circle" style="color: var(--emerald);"></i> Trato Humanizado</div>
+                <div style="flex: 1; min-width: 150px;"><i class="fas fa-check-circle" style="color: var(--emerald);"></i> Experiencia Comprobada</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horarios -->
+    <div class="schedule">
+        <h2>Nuestro Horario</h2>
+        <div class="schedule-grid">
+            <div class="schedule-item">
+                <i class="fas fa-calendar-alt"></i>
+                <strong>Lunes a Sábado</strong>
+                <p>8:00 a.m. – 6:00 p.m.</p>
+            </div>
+            <div class="schedule-item">
+                <i class="fas fa-clock"></i>
+                <strong>Domingos y Festivos</strong>
+                <p>Bajo Cita Previa</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacto -->
+    <section id="contacto">
+        <div class="section-title">
+            <h2>Contacto</h2>
+            <p>¡Estamos listos para conocer a tu mascota!</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Información de Contacto</h3>
+                <div class="info-item">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p><a href="https://wa.me/573003435190" style="text-decoration:none; color:inherit;">+57 300 343 5190</a></p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Ubicación</strong>
+                        <p>San Gil, Santander, Colombia</p>
+                    </div>
+                </div>
+                <!-- El correo ha sido eliminado para simplificar el contacto directo -->
+                <br>
+                <a href="https://wa.me/573003435190" class="btn btn-primary" style="width: 100%;">Agendar por WhatsApp</a>
+            </div>
+            <div class="map-container">
+                <!-- Mapa de Google Maps (San Gil) -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15865.12345678!2d-73.132!3d6.559!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e69ea4a3d445555%3A0x123456789!2sSan+Gil%2C+Santander!5e0!3m2!1ses!2sco!4v1680000000000" 
+                    width="100%" 
+                    height="100%" 
+                    style="border:0;" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <a href="#" class="footer-logo">
+                <i class="fas fa-paw"></i> Patitas Felices
+            </a>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+            </div>
+        </div>
+        <p>Hecho con ❤️ para todos los perritos de San Gil.</p>
+        <div class="copyright">
+            &copy; 2023 Patitas Felices Veterinaria & Estética Canina. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // Lógica del Menú Hamburguesa
+        const menuToggle = document.getElementById('mobile-menu');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if(navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Cerrar menú al hacer click en un link
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+            });
+        });
+
+        // Cambio de apariencia de la Navbar al scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.98)';
+                header.style.padding = '10px 10%';
+            } else {
+                header.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+                header.style.padding = '15px 10%';
+            }
+        });
+    </script>
+</body>
+</html>
